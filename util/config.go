@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/user"
+	"path/filepath"
 	"time"
 
 	"github.com/FactomProject/factomd/common/primitives"
@@ -288,7 +289,7 @@ func ReadConfig(filename string) *FactomdConfig {
 	if filename == "" {
 		filename = ConfigFilename()
 	}
-	if filename[0:1] != "/" {
+	if !filepath.IsAbs(filename) {
 		filename = GetHomeDir() + "/.factom/m2/" + filename
 	}
 
